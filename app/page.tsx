@@ -6,6 +6,7 @@ import Transformations from "@/components/sections/Transformations"
 import WorkMethod from "@/components/sections/WorkMethod"
 import Testimonials from "@/components/sections/Testimonials"
 import Contact from "@/components/sections/Contact"
+import Footer from "@/components/sections/Footer"
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <WorkMethod />
       <Testimonials />
       <Contact />
+      <Footer />
     </main>
   )
 }
