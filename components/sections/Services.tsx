@@ -42,13 +42,9 @@ const servicios = [
 
 export default function Services() {
   return (
-    <section
-      id="servicios"
-      className="bg-dark py-24 px-16 overflow-hidden"
-    >
-      <div className="max-w-[1280px] mx-auto flex flex-col gap-16">
+    <section id="servicios" className="bg-dark py-16 md:py-24 px-6 md:px-16 overflow-hidden">
+      <div className="max-w-[1280px] mx-auto flex flex-col gap-12 md:gap-16">
 
-        {/* Encabezado */}
         <motion.div
           className="flex flex-col items-center gap-4"
           initial={{ opacity: 0, y: 30 }}
@@ -56,38 +52,32 @@ export default function Services() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-anton text-5xl uppercase text-center">
+          <h2 className="font-anton text-4xl md:text-5xl uppercase text-center">
             <span className="text-white">SERVICIOS DE </span>
             <span className="text-primary">ALTO NIVEL</span>
           </h2>
           <div className="w-24 h-1 bg-primary" />
         </motion.div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {servicios.map((servicio, index) => (
             <motion.div
               key={servicio.id}
-              className="bg-[rgba(229,226,225,0.05)] border-l-8 border-primary flex flex-col gap-6 pl-14 pr-12 py-12"
+              className="bg-[rgba(229,226,225,0.05)] border-l-8 border-primary flex flex-col gap-6 pl-8 md:pl-14 pr-6 md:pr-12 py-10 md:py-12"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
             >
-              {/* Ícono */}
               {servicio.icon}
-
-              {/* Título */}
-              <h3 className="font-anton text-3xl text-white uppercase">
+              <h3 className="font-anton text-2xl md:text-3xl text-white uppercase">
                 {servicio.titulo}
               </h3>
-
-              {/* Lista */}
               <ul className="flex flex-col gap-4">
                 {servicio.items.map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <span className="w-3 h-3 bg-primary shrink-0" />
-                    <span className="font-hanken text-white text-base tracking-wide uppercase">
+                    <span className="font-hanken text-white text-sm md:text-base tracking-wide uppercase">
                       {item}
                     </span>
                   </li>

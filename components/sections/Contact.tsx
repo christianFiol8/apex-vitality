@@ -6,7 +6,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useState } from 'react'
 
-// Esquema de validación
 const schema = z.object({
   nombre: z.string().min(2, 'El nombre es requerido'),
   email: z.string().email('Email inválido'),
@@ -17,80 +16,60 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
+const inputClass = "bg-cream-2 px-4 py-4 font-hanken text-sm text-dark/60 tracking-widest uppercase placeholder:text-dark/40 outline-none focus:ring-2 focus:ring-primary transition-all w-full"
+
 export default function Contact() {
   const [enviando, setEnviando] = useState(false)
   const [exito, setExito] = useState(false)
   const [errorEnvio, setErrorEnvio] = useState(false)
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FormData>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
   })
 
   const onSubmit = async (data: FormData) => {
     setEnviando(true)
     setErrorEnvio(false)
-
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
-
-      if (res.ok) {
-        setExito(true)
-        reset()
-      } else {
-        setErrorEnvio(true)
-      }
-    } catch {
-      setErrorEnvio(true)
-    } finally {
-      setEnviando(false)
-    }
+      if (res.ok) { setExito(true); reset() }
+      else setErrorEnvio(true)
+    } catch { setErrorEnvio(true) }
+    finally { setEnviando(false) }
   }
 
   return (
-    <section
-      id="contacto"
-      className="bg-dark py-24 px-16"
-    >
-      <div className="max-w-[1280px] mx-auto flex gap-16 items-start">
+    <section id="contacto" className="bg-dark py-16 md:py-24 px-6 md:px-16">
+      <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row gap-12 md:gap-16 items-start">
 
-        {/* Columna izquierda — info */}
+        {/* Info */}
         <motion.div
-          className="flex-1 flex flex-col gap-6"
+          className="flex-1 flex flex-col gap-6 w-full"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <h2 className="font-anton text-5xl uppercase leading-tight">
+          <h2 className="font-anton text-4xl md:text-5xl uppercase leading-tight">
             <span className="text-white">COMIENZA </span>
             <span className="text-primary">HOY</span>
           </h2>
-
           <p className="font-hanken text-white/80 text-base leading-relaxed">
             ¿Listo para llevar tu rendimiento al siguiente nivel? Completa el
             formulario o contáctame directamente por WhatsApp.
           </p>
-
-          {/* Dirección */}
           <div className="flex items-center gap-4">
             <svg className="w-4 h-5 text-primary shrink-0" viewBox="0 0 16 20" fill="currentColor">
               <path d="M8 0C4.13 0 1 3.13 1 7c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5C6.62 9.5 5.5 8.38 5.5 7S6.62 4.5 8 4.5 10.5 5.62 10.5 7 9.38 9.5 8 9.5z"/>
             </svg>
-            <span className="font-hanken text-white text-base">
+            <span className="font-hanken text-white text-sm md:text-base">
               Consultorio Presencial: La Paz, Baja California Sur
             </span>
           </div>
-
-          {/* Botón WhatsApp */}
           <a
             href="https://wa.me/521XXXXXXXXXX"
             target="_blank"
@@ -104,99 +83,52 @@ export default function Contact() {
           </a>
         </motion.div>
 
-        {/* Columna derecha — formulario */}
+        {/* Formulario */}
         <motion.div
-          className="flex-1"
+          className="flex-1 w-full"
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <div className="bg-white p-10 flex flex-col gap-6">
+          <div className="bg-white p-6 md:p-10 flex flex-col gap-4 md:gap-6">
 
-            {/* Fila 1: Nombre + Email */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1">
-                <input
-                  {...register('nombre')}
-                  placeholder="NOMBRE COMPLETO"
-                  className="bg-cream-2 px-4 py-4 font-hanken text-sm text-dark/60 tracking-widest uppercase placeholder:text-dark/40 outline-none focus:ring-2 focus:ring-primary transition-all"
-                />
-                {errors.nombre && (
-                  <span className="font-hanken text-primary text-xs">{errors.nombre.message}</span>
-                )}
+                <input {...register('nombre')} placeholder="NOMBRE COMPLETO" className={inputClass} />
+                {errors.nombre && <span className="font-hanken text-primary text-xs">{errors.nombre.message}</span>}
               </div>
               <div className="flex flex-col gap-1">
-                <input
-                  {...register('email')}
-                  placeholder="EMAIL"
-                  type="email"
-                  className="bg-cream-2 px-4 py-4 font-hanken text-sm text-dark/60 tracking-widest uppercase placeholder:text-dark/40 outline-none focus:ring-2 focus:ring-primary transition-all"
-                />
-                {errors.email && (
-                  <span className="font-hanken text-primary text-xs">{errors.email.message}</span>
-                )}
+                <input {...register('email')} placeholder="EMAIL" type="email" className={inputClass} />
+                {errors.email && <span className="font-hanken text-primary text-xs">{errors.email.message}</span>}
               </div>
             </div>
 
-            {/* Fila 2: Teléfono + Tipo de consulta */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1">
-                <input
-                  {...register('telefono')}
-                  placeholder="TELÉFONO"
-                  type="tel"
-                  className="bg-cream-2 px-4 py-4 font-hanken text-sm text-dark/60 tracking-widest uppercase placeholder:text-dark/40 outline-none focus:ring-2 focus:ring-primary transition-all"
-                />
-                {errors.telefono && (
-                  <span className="font-hanken text-primary text-xs">{errors.telefono.message}</span>
-                )}
+                <input {...register('telefono')} placeholder="TELÉFONO" type="tel" className={inputClass} />
+                {errors.telefono && <span className="font-hanken text-primary text-xs">{errors.telefono.message}</span>}
               </div>
               <div className="flex flex-col gap-1">
-                <select
-                  {...register('tipoConsulta')}
-                  className="bg-cream-2 px-4 py-4 font-hanken text-sm text-dark/60 tracking-widest uppercase outline-none focus:ring-2 focus:ring-primary transition-all appearance-none cursor-pointer"
-                >
+                <select {...register('tipoConsulta')} className={`${inputClass} appearance-none cursor-pointer`}>
                   <option value="">TIPO DE CONSULTA</option>
                   <option value="presencial">PRESENCIAL</option>
                   <option value="online">ONLINE</option>
                   <option value="nutricion">SOLO NUTRICIÓN</option>
                   <option value="entrenamiento">SOLO ENTRENAMIENTO</option>
                 </select>
-                {errors.tipoConsulta && (
-                  <span className="font-hanken text-primary text-xs">{errors.tipoConsulta.message}</span>
-                )}
+                {errors.tipoConsulta && <span className="font-hanken text-primary text-xs">{errors.tipoConsulta.message}</span>}
               </div>
             </div>
 
-            {/* Textarea */}
             <div className="flex flex-col gap-1">
-              <textarea
-                {...register('mensaje')}
-                placeholder="MENSAJE / OBJETIVOS"
-                rows={5}
-                className="bg-cream-2 px-4 py-4 font-hanken text-sm text-dark/60 tracking-widest uppercase placeholder:text-dark/40 outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
-              />
-              {errors.mensaje && (
-                <span className="font-hanken text-primary text-xs">{errors.mensaje.message}</span>
-              )}
+              <textarea {...register('mensaje')} placeholder="MENSAJE / OBJETIVOS" rows={5} className={`${inputClass} resize-none`} />
+              {errors.mensaje && <span className="font-hanken text-primary text-xs">{errors.mensaje.message}</span>}
             </div>
 
-            {/* Mensaje de éxito */}
-            {exito && (
-              <p className="font-hanken text-sm text-green-600 text-center">
-                ¡Solicitud enviada! Te contactaremos pronto.
-              </p>
-            )}
+            {exito && <p className="font-hanken text-sm text-green-600 text-center">¡Solicitud enviada! Te contactaremos pronto.</p>}
+            {errorEnvio && <p className="font-hanken text-sm text-primary text-center">Hubo un error al enviar. Intenta de nuevo.</p>}
 
-            {/* Mensaje de error */}
-            {errorEnvio && (
-              <p className="font-hanken text-sm text-primary text-center">
-                Hubo un error al enviar. Intenta de nuevo.
-              </p>
-            )}
-
-            {/* Botón submit */}
             <button
               onClick={handleSubmit(onSubmit)}
               disabled={enviando}
@@ -204,7 +136,6 @@ export default function Contact() {
             >
               {enviando ? 'ENVIANDO...' : 'ENVIAR SOLICITUD'}
             </button>
-
           </div>
         </motion.div>
 

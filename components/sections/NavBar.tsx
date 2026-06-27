@@ -6,8 +6,10 @@ import Link from 'next/link'
 const navLinks = [
   { label: 'Sobre mi', href: '#sobre-mi' },
   { label: 'Servicios', href: '#servicios' },
+  {label: 'Transformaciones', href: '#transformacion'},
   { label: 'Proceso', href: '#metodo' },
   { label: 'Testimonios', href: '#testimonios' },
+  
 ]
 
 export default function Navbar() {
