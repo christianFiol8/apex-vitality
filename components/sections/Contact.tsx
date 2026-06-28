@@ -71,7 +71,7 @@ export default function Contact() {
             </span>
           </div>
           <a
-            href="https://wa.me/521XXXXXXXXXX"
+            href="https://wa.me/526121009398"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-4 bg-[#25d366] text-white font-anton text-base tracking-widest uppercase px-8 py-4 hover:bg-[#1da851] transition-colors duration-200 w-fit"
