@@ -1,6 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion , AnimatePresence } from 'framer-motion'
+import {useState} from 'react'
 
 const planes = [
   {
@@ -65,6 +66,7 @@ const promociones = [
 ]
 
 export default function Prices() {
+  const [modalAbierto, setModalAbierto] = useState(false)
   return (
     <section id="precios" className="bg-cream-2 py-16 md:py-24 px-6 md:px-16">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-16">
@@ -202,6 +204,123 @@ export default function Prices() {
             ))}
           </div>
         </motion.div>
+        <motion.div
+          className="flex justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <button
+            onClick={() => setModalAbierto(true)}
+            className="flex items-center gap-3 border border-dark/30 text-dark font-hanken text-sm tracking-widest uppercase px-8 py-3 hover:border-primary hover:text-primary transition-colors duration-200"
+          >
+            <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm.75 4a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm-.75 2.5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 018 7.5z"/>
+            </svg>
+            VER POLÍTICAS DE PAGO
+          </button>
+        </motion.div>
+
+        {/* Modal */}
+        <AnimatePresence>
+          {modalAbierto && (
+            <motion.div
+              className="fixed inset-0 z-50 flex items-center justify-center px-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {/* Overlay */}
+              <div
+                className="absolute inset-0 bg-dark/80"
+                onClick={() => setModalAbierto(false)}
+              />
+
+              {/* Contenido */}
+              <motion.div
+                className="relative bg-cream max-w-lg w-full p-8 flex flex-col gap-6 z-10"
+                initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.98 }}
+                transition={{ duration: 0.25 }}
+              >
+                {/* Header */}
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-anton text-2xl text-dark uppercase">
+                    POLÍTICAS DE <span className="text-primary">PAGO</span>
+                  </h3>
+                  <button
+                    onClick={() => setModalAbierto(false)}
+                    className="text-dark/40 hover:text-primary transition-colors duration-200 shrink-0"
+                    aria-label="Cerrar"
+                  >
+                    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"/>
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Políticas */}
+                <div className="flex flex-col gap-4">
+
+                  <div className="flex items-start gap-3">
+                    <span className="w-3 h-3 bg-primary shrink-0 mt-1" />
+                    <p className="font-hanken text-dark/80 text-sm leading-relaxed">
+                      Para confirmar tu consulta se debe liquidar el <strong>50% del total</strong> al menos 1 día antes y enviar el comprobante vía WhatsApp.
+                    </p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="w-3 h-3 bg-primary shrink-0 mt-1" />
+                    <p className="font-hanken text-dark/80 text-sm leading-relaxed">
+                      Métodos de pago aceptados: <strong>transferencia bancaria</strong> o <strong>efectivo</strong> (solo presencial).
+                    </p>
+                  </div>
+
+                </div>
+
+                {/* Info de pago */}
+                <div className="bg-dark p-6 flex flex-col gap-3">
+                  <span className="font-anton text-primary text-base uppercase tracking-widest">
+                    DATOS DE TRANSFERENCIA
+                  </span>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex justify-between items-center">
+                      <span className="font-hanken text-white/50 text-sm">Banco</span>
+                      <span className="font-hanken text-white text-sm font-semibold">BBVA</span>
+                    </div>
+                    <div className="w-full h-px bg-white/10" />
+                    <div className="flex justify-between items-center">
+                      <span className="font-hanken text-white/50 text-sm">Titular</span>
+                      <span className="font-hanken text-white text-sm font-semibold">Erick Jaziel Cosío Romero</span>
+                    </div>
+                    <div className="w-full h-px bg-white/10" />
+                    <div className="flex justify-between items-center">
+                      <span className="font-hanken text-white/50 text-sm">CLABE</span>
+                      <span className="font-hanken text-white text-sm font-semibold">Pendiente</span>
+                    </div>
+                    <div className="w-full h-px bg-white/10" />
+                    <div className="flex justify-between items-center">
+                      <span className="font-hanken text-white/50 text-sm">Motivo de pago</span>
+                      <span className="font-hanken text-white text-sm font-semibold">Tu nombre completo</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Botón cerrar */}
+                <button
+                  onClick={() => setModalAbierto(false)}
+                  className="w-full bg-primary text-white font-anton text-base tracking-widest uppercase py-3 hover:bg-red-800 transition-colors duration-200"
+                >
+                  ENTENDIDO
+                </button>
+
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </section>
