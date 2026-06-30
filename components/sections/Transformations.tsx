@@ -13,7 +13,7 @@ const items = [
 
 export default function Transformations() {
   return (
-    <section id="transformacion" className="bg-cream py-16 md:py-24 px-6 md:px-16 overflow-hidden">
+    <section id="transformacion" className="bg-dark py-16 md:py-24 px-6 md:px-16 overflow-hidden">
       <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row gap-12 md:gap-16 items-start md:items-end">
 
         <div className="flex-1 flex flex-col gap-10 md:gap-12 w-full">
@@ -24,7 +24,7 @@ export default function Transformations() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-dark">TRANSFORMACIÓN </span>
+            <span className="text-white">TRANSFORMACIÓN </span>
             <span className="text-primary">SIN</span>
             <br />
             <span className="text-primary">SACRIFICIOS</span>
@@ -42,13 +42,12 @@ export default function Transformations() {
               >
                 <div
                   className="w-14 h-14 md:w-16 md:h-16 bg-primary shrink-0 flex items-center justify-center"
-                  style={{ boxShadow: '8px 8px 0px #1c1b1b' }}
                 >
                   <span className="font-anton text-2xl md:text-3xl text-white">{item.numero}</span>
                 </div>
                 <div className="flex flex-col gap-2 pt-1">
-                  <h4 className="font-anton text-lg md:text-xl text-dark uppercase">{item.titulo}</h4>
-                  <p className="font-hanken text-sm md:text-base text-dark/70 leading-relaxed">{item.descripcion}</p>
+                  <h4 className="font-anton text-lg md:text-xl text-white uppercase">{item.titulo}</h4>
+                  <p className="font-hanken text-sm md:text-base text-white/70 leading-relaxed">{item.descripcion}</p>
                 </div>
               </motion.div>
             ))}
@@ -64,7 +63,7 @@ export default function Transformations() {
         >
           <div
             className="relative w-full h-[400px] md:h-[700px]"
-            style={{ boxShadow: '8px 8px 0px #1c1b1b' }}
+            style={{ boxShadow: '8px 8px 0px #fcf9f8' }}
           >
             <Image
               src="/images/transformacion.jpg"
