@@ -1,6 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 
 const servicios = [
   {
@@ -20,6 +21,10 @@ const servicios = [
       'AJUSTES SEMANALES SEGÚN PROGRESO',
       'SOPORTE TÉCNICO DE EJECUCIÓN',
     ],
+    extra: [
+      'Entrenamiento enfocado en rendimiento y fuerza: dirigido a disciplinas como artes marciales, atletismo, running, ciclismo o natación.',
+  'Entrenamiento bodybuilding, fuerza e hipertrofia: rutina personalizada para gimnasio o entrenamiento mixto, adaptada a tus necesidades, enfoque y objetivo.',
+    ],
   },
   {
     id: 'nutricion',
@@ -36,10 +41,23 @@ const servicios = [
       'SUPLEMENTACIÓN BASADA EN EVIDENCIA',
       'FLEXIBILIDAD Y SOSTENIBILIDAD',
     ],
+    extra: [
+      'Entrenamiento enfocado en rendimiento y fuerza: aumento de masa muscular y disminución de grasa simultáneamente.',
+      'Especialización en nutrición con ciclo menstrual y afecciones hormonales.',
+      'Educación nutricional real — aprendes a comer, no solo a seguir un menú.',
+      'Plan 100% adaptado a tus gustos, necesidades y estilo de vida.',
+      'Mejora tu relación con la comida y tratamiento de síntomas digestivos.',
+    ],
   },
 ]
 
-export default function Services() {
+export default function Servicios() {
+  const [expandido, setExpandido] = useState<string | null>(null)
+
+  const toggle = (id: string) => {
+    setExpandido(prev => prev === id ? null : id)
+  }
+
   return (
     <section id="servicios" className="bg-dark py-16 md:py-24 px-6 md:px-16 overflow-hidden">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-12 md:gap-16">
@@ -59,31 +77,80 @@ export default function Services() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-          {servicios.map((servicio, index) => (
-            <motion.div
-              key={servicio.id}
-              className="bg-[rgba(229,226,225,0.05)] border-l-8 border-primary flex flex-col gap-6 pl-8 md:pl-14 pr-6 md:pr-12 py-10 md:py-12"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-            >
-              {servicio.icon}
-              <h3 className="font-anton text-2xl md:text-3xl text-white uppercase">
-                {servicio.titulo}
-              </h3>
-              <ul className="flex flex-col gap-4">
-                {servicio.items.map((item) => (
-                  <li key={item} className="flex items-center gap-3">
-                    <span className="w-3 h-3 bg-primary shrink-0" />
-                    <span className="font-hanken text-white text-sm md:text-base tracking-wide uppercase">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+          {servicios.map((servicio, index) => {
+            const abierto = expandido === servicio.id
+
+            return (
+              <motion.div
+                key={servicio.id}
+                className="bg-[rgba(229,226,225,0.05)] border-l-8 border-primary flex flex-col gap-6 pl-8 md:pl-14 pr-6 md:pr-12 py-10 md:py-12"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+              >
+                {servicio.icon}
+
+                <h3 className="font-anton text-2xl md:text-3xl text-white uppercase">
+                  {servicio.titulo}
+                </h3>
+
+                <ul className="flex flex-col gap-4">
+                  {servicio.items.map((item) => (
+                    <li key={item} className="flex items-center gap-3">
+                      <span className="w-3 h-3 bg-primary shrink-0" />
+                      <span className="font-hanken text-white text-sm md:text-base tracking-wide uppercase">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Botón expandir */}
+                <button
+                  onClick={() => toggle(servicio.id)}
+                  className="flex items-center gap-3 text-primary font-anton text-base uppercase tracking-widest hover:text-red-400 transition-colors duration-200 w-fit pt-2"
+                >
+                  <span>{abierto ? 'VER MENOS' : 'VER MÁS'}</span>
+                  <motion.svg
+                    animate={{ rotate: abierto ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-4 h-4"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                  >
+                    <path d="M8 10.5L2 4.5H14L8 10.5Z"/>
+                  </motion.svg>
+                </button>
+
+                {/* Contenido expandido */}
+                <AnimatePresence initial={false}>
+                  {abierto && (
+                    <motion.div
+                      key="extra"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.35, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <div className="border-t border-white/10 pt-6 flex flex-col gap-3">
+                        {servicio.extra.map((punto, i) => (
+                          <div key={i} className="flex items-start gap-3">
+                            <span className="w-1.5 h-1.5 bg-primary rounded-full shrink-0 mt-2" />
+                            <p className="font-hanken text-white/70 text-sm leading-relaxed">
+                              {punto}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+              </motion.div>
+            )
+          })}
         </div>
 
       </div>
