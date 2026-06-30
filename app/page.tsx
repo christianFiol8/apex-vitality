@@ -17,6 +17,7 @@ export default function Home() {
       <AboutMe />
       <Services />
       <Prices />
+      <div className="section-divider" />
       <Transformations />
       <WorkMethod />
       <Testimonials />

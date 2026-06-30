@@ -104,7 +104,6 @@ export default function Contact() {
               <div className="flex flex-col gap-1">
                 <select {...register('tipoConsulta')} className={`${inputClass} appearance-none cursor-pointer`}>
                   <option value="">TIPO DE CONSULTA</option>
-                  <option value="presencial">PRESENCIAL</option>
                   <option value="online">ONLINE</option>
                   <option value="nutricion">SOLO NUTRICIÓN</option>
                   <option value="entrenamiento">SOLO ENTRENAMIENTO</option>
