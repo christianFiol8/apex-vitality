@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 
 const pasos = [
-  { numero: '01', titulo: 'AGENDA', descripcion: 'Selecciona tu horario y modalidad (Presencial u Online).' },
+  { numero: '01', titulo: 'AGENDA', descripcion: 'Selecciona tu horario(Online).' },
   { numero: '02', titulo: 'CONSULTA', descripcion: 'Evaluación antropométrica y clínica detallada de tus metas.' },
   { numero: '03', titulo: 'PLAN DE PODER', descripcion: 'Entrega de tu plan 100% personalizado listo para ejecutar.' },
 ]

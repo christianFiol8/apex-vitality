@@ -23,9 +23,9 @@ export default function AboutMe() {
           </h2>
 
           <p className="font-hanken text-dark text-base leading-relaxed">
-            Con más de 8 años de trayectoria en el campo de la nutrición clínica y el
-            alto rendimiento deportivo, mi enfoque se aleja de las dietas genéricas y los
-            planes restrictivos.
+            Mi especialidad es la nutrición deportiva y tu rendimiento deportivo, con experiencia en bodybuilding,
+            mi compromiso con tus resultados es un enfoque directo en tus objetivos y tus metas, alejado a dietas genéricas,
+            entrenamientos genéricos, garantizándote resultados a cambio de tu confianza y constancia.
           </p>
 
           <p className="font-hanken text-dark text-base leading-relaxed font-semibold">
@@ -34,17 +34,6 @@ export default function AboutMe() {
             {' '}se basa en la ciencia del rendimiento humano para optimizar tu
             composición corporal sin sacrificar tu salud ni tu estilo de vida.
           </p>
-
-          <div className="flex items-center gap-4 pt-2">
-            <div className="w-8 h-8 text-primary shrink-0">
-              <svg viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.5 2L20.5 11H30L22.5 17L25.5 26L16.5 20L7.5 26L10.5 17L3 11H12.5L16.5 2Z" fill="currentColor"/>
-              </svg>
-            </div>
-            <span className="font-anton text-primary text-lg md:text-xl uppercase">
-              8+ AÑOS DE EXPERIENCIA CERTIFICADA
-            </span>
-          </div>
         </motion.div>
 
         <motion.div

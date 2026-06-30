@@ -62,14 +62,6 @@ export default function Contact() {
             ¿Listo para llevar tu rendimiento al siguiente nivel? Completa el
             formulario o contáctame directamente por WhatsApp.
           </p>
-          <div className="flex items-center gap-4">
-            <svg className="w-4 h-5 text-primary shrink-0" viewBox="0 0 16 20" fill="currentColor">
-              <path d="M8 0C4.13 0 1 3.13 1 7c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5C6.62 9.5 5.5 8.38 5.5 7S6.62 4.5 8 4.5 10.5 5.62 10.5 7 9.38 9.5 8 9.5z"/>
-            </svg>
-            <span className="font-hanken text-white text-sm md:text-base">
-              Consultorio Presencial: La Paz, Baja California Sur
-            </span>
-          </div>
           <a
             href="https://wa.me/526121009398"
             target="_blank"

@@ -86,7 +86,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen(false)}
             className="bg-primary text-white font-anton text-base tracking-wide uppercase px-6 py-2 text-center hover:bg-red-800 transition-colors"
           >
-            CONTACTANOS
+            CONTACTO
           </Link>
         </div>
       )}
