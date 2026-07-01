@@ -22,10 +22,19 @@ export default function AboutMe() {
             <span className="text-primary block">TU RESULTADO</span>
           </h2>
 
+          {/* Párrafo 1 */}
           <p className="font-hanken text-dark text-base leading-relaxed">
-            Mi especialidad es la nutrición deportiva y tu rendimiento deportivo, con experiencia en bodybuilding,
-            mi compromiso con tus resultados es un enfoque directo en tus objetivos y tus metas, alejado a dietas genéricas,
-            entrenamientos genéricos, garantizándote resultados a cambio de tu confianza y constancia.
+            Encantado de acompañarte en tu proceso. Mi objetivo no es que solo sigas un menú,
+            es construirte como una persona autónoma, capaz de adaptarse a un estilo de vida
+            más nutritivo, más sano y más satisfactorio para ti.
+          </p>
+
+          {/* Párrafo 2 */}
+          <p className="font-hanken text-dark text-base leading-relaxed">
+            Sin miedo hacia la comida, sin restricciones.{' '}
+            <span className="text-primary font-semibold">
+              Solo un estilo de vida que construyas y disfrutes.
+            </span>
           </p>
 
           <p className="font-hanken text-dark text-base leading-relaxed font-semibold">

@@ -62,6 +62,15 @@ export default function Contact() {
             ¿Listo para llevar tu rendimiento al siguiente nivel? Completa el
             formulario o contáctame directamente por WhatsApp.
           </p>
+          {/* Horario */}
+          <div className="flex items-center gap-4">
+            <svg className="w-4 h-5 text-primary shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 0a10 10 0 100 20A10 10 0 0010 0zm.75 10.75a.75.75 0 01-.75.75H6a.75.75 0 010-1.5h3.25V5a.75.75 0 011.5 0v5.75z"/>
+            </svg>
+            <span className="font-hanken text-white text-sm md:text-base">
+              Citas: Sábados y Domingos de 8:00 am – 7:00 pm
+            </span>
+          </div>
           <a
             href="https://wa.me/526121009398"
             target="_blank"
