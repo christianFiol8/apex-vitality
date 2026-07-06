@@ -14,7 +14,7 @@ const hankenGrotesk = Hanken_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'Apex Vitality — Nutrición Clínica y Alto Rendimiento | La Paz, BCS',
+  title: 'Apex Vitality — Nutrición Deportiva y Alto Rendimiento | La Paz, BCS',
   description: 'Lic. Erick Cosío Romero. Planes nutricionales y de entrenamiento personalizados basados en ciencia del rendimiento humano.',
 }
 

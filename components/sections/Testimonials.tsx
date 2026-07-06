@@ -3,9 +3,9 @@
 import { motion } from 'framer-motion'
 
 const testimonios = [
-  { id: 1, cita: 'Logré bajar mi porcentaje de grasa manteniendo mi fuerza en el gimnasio. El plan es súper flexible.', nombre: 'CARLOS R.', rol: 'ATLETA DE CROSSFIT' },
-  { id: 2, cita: 'La mejor inversión para mi salud. Erick entiende perfectamente las necesidades de un deportista.', nombre: 'MARIANA L.', rol: 'MARATONISTA' },
-  { id: 3, cita: 'Sin dietas locas, solo ciencia. He mejorado mi rendimiento y mi energía diaria notablemente.', nombre: 'JORGE M.', rol: 'ENTUSIASTA DEL FITNESS' },
+  { id: 1, cita: 'Gracias a Erick he podido encontrar balance entre la comida y una vida saludable. Logrando un mayor rendimiento en mis entrenamientos y alcanzar mis objetivos', nombre: 'PAMELA M.', rol: 'ATLETA DE GIMNASIO' },
+  { id: 2, cita: 'Erick me enseñó que comer sano y llevar una dieta no son restricción en un estilo de vida que se puede disfrutar para superar tus límites, gracias!!.', nombre: 'JESÚS P.', rol: 'ATLETA DE GIMNASIO' },
+  { id: 3, cita: 'Muy buena atención. Adaptable a todo tipo de estilo de vida y preferencias alimenticias. Recomendado al 100%.', nombre: 'MARIA JOSE V.', rol: 'ATLETA DE GIMNASIO' },
 ]
 
 function Estrellas() {
