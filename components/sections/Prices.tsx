@@ -1,14 +1,13 @@
 'use client'
 
-import { motion , AnimatePresence } from 'framer-motion'
-import {useState} from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 
 const planes = [
   {
     id: 'recreativo',
     nombre: 'PLAN NUTRICIONAL RECREATIVO',
-    precio: '$550',
-    moneda: 'MXN',
+    precios: { mensual: '$550', trimestral: '$1,400' },
     destacado: false,
     items: [
       'Plan nutricional 100% personalizado a tus necesidades y objetivos.',
@@ -21,8 +20,7 @@ const planes = [
   {
     id: 'deportivo',
     nombre: 'PLAN NUTRICIONAL DEPORTIVO',
-    precio: '$600',
-    moneda: 'MXN',
+    precios: { mensual: '$600', trimestral: '$1,600' },
     destacado: true,
     items: [
       'Todo lo incluido en el Plan Recreativo.',
@@ -35,8 +33,7 @@ const planes = [
   {
     id: 'mixto',
     nombre: 'PLAN NUTRICIONAL + ENTRENAMIENTO',
-    precio: '$800',
-    moneda: 'MXN',
+    precios: { mensual: '$800', trimestral: '$2,100' },
     destacado: false,
     items: [
       'Todo lo incluido en el Plan Deportivo.',
@@ -65,8 +62,10 @@ const promociones = [
   },
 ]
 
-export default function Prices() {
+export default function Precios() {
   const [modalAbierto, setModalAbierto] = useState(false)
+  const [periodo, setPeriodo] = useState<'mensual' | 'trimestral'>('mensual')
+
   return (
     <section id="precios" className="bg-cream-2 py-16 md:py-24 px-6 md:px-16">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-16">
@@ -84,6 +83,38 @@ export default function Prices() {
             <span className="text-primary">PRECIOS</span>
           </h2>
           <div className="w-24 h-1 bg-primary" />
+        </motion.div>
+
+        {/* Toggle mensual / trimestral */}
+        <motion.div
+          className="flex justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <div className="flex items-center bg-dark/10 p-1">
+            <button
+              onClick={() => setPeriodo('mensual')}
+              className={`font-anton text-sm tracking-widest uppercase px-6 py-2.5 transition-colors duration-200 ${
+                periodo === 'mensual'
+                  ? 'bg-dark text-white'
+                  : 'text-dark/50 hover:text-dark'
+              }`}
+            >
+              1 MES
+            </button>
+            <button
+              onClick={() => setPeriodo('trimestral')}
+              className={`font-anton text-sm tracking-widest uppercase px-6 py-2.5 transition-colors duration-200 ${
+                periodo === 'trimestral'
+                  ? 'bg-primary text-white'
+                  : 'text-dark/50 hover:text-dark'
+              }`}
+            >
+              3 MESES
+            </button>
+          </div>
         </motion.div>
 
         {/* Cards principales */}
@@ -118,14 +149,27 @@ export default function Prices() {
               </h3>
 
               {/* Precio */}
-              <div className="flex items-end gap-2">
-                <span className="font-anton text-5xl text-primary leading-none">
-                  {plan.precio}
-                </span>
-                <span className={`font-hanken text-base mb-1 ${
-                  plan.destacado ? 'text-white/60' : 'text-dark/50'
+              <div className="flex flex-col gap-1">
+                <div className="flex items-end gap-2">
+                  <motion.span
+                    key={periodo}
+                    className="font-anton text-5xl text-primary leading-none"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {plan.precios[periodo]}
+                  </motion.span>
+                  <span className={`font-hanken text-base mb-1 ${
+                    plan.destacado ? 'text-white/60' : 'text-dark/50'
+                  }`}>
+                    MXN
+                  </span>
+                </div>
+                <span className={`font-hanken text-xs uppercase tracking-widest ${
+                  plan.destacado ? 'text-white/40' : 'text-dark/40'
                 }`}>
-                  {plan.moneda}
+                  {periodo === 'mensual' ? 'por mes' : '3 meses'}
                 </span>
               </div>
 
@@ -204,6 +248,8 @@ export default function Prices() {
             ))}
           </div>
         </motion.div>
+
+        {/* Botón políticas */}
         <motion.div
           className="flex justify-center"
           initial={{ opacity: 0, y: 20 }}
@@ -264,21 +310,18 @@ export default function Prices() {
 
                 {/* Políticas */}
                 <div className="flex flex-col gap-4">
-
                   <div className="flex items-start gap-3">
                     <span className="w-3 h-3 bg-primary shrink-0 mt-1" />
                     <p className="font-hanken text-dark/80 text-sm leading-relaxed">
                       Para confirmar tu consulta se debe liquidar el <strong>50% del total</strong> al menos 1 día antes y enviar el comprobante vía WhatsApp.
                     </p>
                   </div>
-
                   <div className="flex items-start gap-3">
                     <span className="w-3 h-3 bg-primary shrink-0 mt-1" />
                     <p className="font-hanken text-dark/80 text-sm leading-relaxed">
                       Métodos de pago aceptados: <strong>transferencia bancaria</strong> o <strong>efectivo</strong> (solo presencial).
                     </p>
                   </div>
-
                 </div>
 
                 {/* Info de pago */}
