@@ -58,6 +58,7 @@ export default function AboutMe() {
               src="/images/sobre-mi.jpg"
               alt="Lic. Erick Cosío Romero"
               fill
+              sizes='(max-width: 768px) 100vw, 50vw'
               className="object-cover"
             />
           </div>
