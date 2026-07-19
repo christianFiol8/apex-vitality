@@ -11,12 +11,14 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
     font-family: var(--font-hanken), sans-serif;
     background-color: #fcf9f8;
     color: #1c1b1b;
+    overflow-x: hidden;
   }
 }
 
