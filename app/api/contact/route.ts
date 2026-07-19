@@ -17,8 +17,8 @@ export async function POST(req: NextRequest) {
     }
 
     await resend.emails.send({
-      from: 'Apex Vitality <onboarding@resend.dev>',
-      to: 'cosioerick19@gmail.com', // ← cambiar al email real del cliente
+      from: 'Apex Vitality <contacto@apexvitality.me>',
+      to: 'apexvitality19@gmail.com', // ← cambiar al email real del cliente
       subject: `Nueva consulta de ${nombre}`,
       html: `
         <h2>Nueva solicitud de consulta</h2>
