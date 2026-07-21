@@ -39,7 +39,7 @@ export default function Hero() {
           className="border-l-4 border-primary pl-5"
         >
           <p className="font-hanken text-text-light text-sm md:text-base tracking-[1.6px] uppercase text-left">
-            LIC. ERICK COSÍO ROMERO — NUTRICIÓN CLÍNICA Y ALTO RENDIMIENTO
+           NUTRICIONISTA ERICK COSÍO ROMERO — NUTRICIÓN CLÍNICA Y ALTO RENDIMIENTO
           </p>
         </motion.div>
 
